@@ -4,7 +4,7 @@ cc_library_shared{
       instruction_set : "arm",
     },
   },
-  name : "libnfc-nci",
+  name : "libnfc-nci-hlong",
   shared_libs : [
     "libcutils",
     "liblog",
@@ -21,7 +21,6 @@ cc_library_shared{
     "android.hardware.nfc@1.1",
     "android.hardware.nfc@1.2",
     "vendor.nxp.nxpnfc@2.0",
-    "vendor.nxp.nxpnfclegacy@1.0",
     // Add for AIDL
     "android.hardware.nfc-V1-ndk",
     "libbinder_ndk",
@@ -80,7 +79,7 @@ cc_library_shared{
 }
 
 cc_defaults{
-  name : "nfc_fuzzer_defaults",
+  name : "nxp_nfc_fuzzer_defaults",
   native_coverage : true,
   static_libs : [
     "libnfcutils",
@@ -132,8 +131,8 @@ cc_defaults{
 }
 
 cc_fuzz {
-    name: "nfc_nci_fuzzer",
-    defaults: ["nfc_fuzzer_defaults"],
+    name: "nxp_nfc_nci_fuzzer",
+    defaults: ["nxp_nfc_fuzzer_defaults"],
     srcs: [
         "nfc/nci/*.cc",
         "nfc/nfc/*.cc",
@@ -146,8 +145,8 @@ cc_fuzz {
 }
 
 cc_fuzz{
-  name : "nfc_rw_fuzzer",
-  defaults : ["nfc_fuzzer_defaults"],
+  name : "nxp_nfc_rw_fuzzer",
+  defaults : ["nxp_nfc_fuzzer_defaults"],
   srcs : [
     "nfc/tags/rw_*.cc",
     "nfc/tags/tags_int.cc",
@@ -159,8 +158,8 @@ cc_fuzz{
 }
 
 cc_fuzz{
-  name : "nfc_ce_fuzzer",
-  defaults : ["nfc_fuzzer_defaults"],
+  name : "nxp_nfc_ce_fuzzer",
+  defaults : ["nxp_nfc_fuzzer_defaults"],
   srcs : [
     "nfc/tags/ce_*.cc",
     "nfc/tags/tags_int.cc",
@@ -172,8 +171,8 @@ cc_fuzz{
 }
 
 cc_fuzz{
-  name : "nfc_ndef_fuzzer",
-  defaults : ["nfc_fuzzer_defaults"],
+  name : "nxp_nfc_ndef_fuzzer",
+  defaults : ["nxp_nfc_fuzzer_defaults"],
   srcs : [
     "nfa/dm/nfa_dm_ndef.cc",
     "nfc/ndef/*.cc",
@@ -185,8 +184,8 @@ cc_fuzz{
 }
 
 cc_fuzz {
-   name: "nfc_llcp_fuzzer",
-   defaults : ["nfc_fuzzer_defaults"],
+   name: "nxp_nfc_llcp_fuzzer",
+   defaults : ["nxp_nfc_fuzzer_defaults"],
    srcs : [
     "nfc/llcp/*.cc",
     "gki/common/*.cc",
